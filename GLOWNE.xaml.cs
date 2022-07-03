@@ -23,6 +23,21 @@ namespace Ostateczny_WPF_projekt
         {
             InitializeComponent();
 
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+            var docs = from d in db.Lekarz
+                       select d;
+            
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.ID_lekarza);
+                Console.WriteLine(item.imie_lekarza);
+                Console.WriteLine(item.nazwisko_lekarza);
+                Console.WriteLine(item.specjalizacja);
+            }
+            this.GridLekarze.ItemsSource = docs.ToList();
+        }
+        private void dodajL_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
