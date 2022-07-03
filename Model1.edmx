@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OstatecznaWersjaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lekarz">
+          <Key>
+            <PropertyRef Name="ID_lekarza" />
+          </Key>
+          <Property Name="ID_lekarza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie_lekarza" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="nazwisko_lekarza" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="specjalizacja" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacjent">
+          <Key>
+            <PropertyRef Name="ID_pacjenta" />
+          </Key>
+          <Property Name="ID_pacjenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie_pacjenta" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="nazwisko_pacjenta" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="wiek_pacjenta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terminy">
+          <Key>
+            <PropertyRef Name="ID_terminu" />
+          </Key>
+          <Property Name="ID_terminu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="termin" Type="date" Nullable="false" />
+          <Property Name="czy_wolne" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TerminyUmowione">
+          <Key>
+            <PropertyRef Name="ID_TerminyUmowione" />
+          </Key>
+          <Property Name="ID_TerminyUmowione" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_lekarza" Type="int" />
+          <Property Name="ID_pacjenta" Type="int" />
+          <Property Name="ID_termiu" Type="int" />
+        </EntityType>
+        <Association Name="FK__TerminyUm__ID_le__5070F446">
+          <End Role="Lekarz" Type="Self.Lekarz" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarz">
+              <PropertyRef Name="ID_lekarza" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_lekarza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TerminyUm__ID_pa__5165187F">
+          <End Role="Pacjent" Type="Self.Pacjent" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjent">
+              <PropertyRef Name="ID_pacjenta" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_pacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TerminyUm__ID_te__52593CB8">
+          <End Role="Terminy" Type="Self.Terminy" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminy">
+              <PropertyRef Name="ID_terminu" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_termiu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OstatecznaWersjaModelStoreContainer">
+          <EntitySet Name="Lekarz" EntityType="Self.Lekarz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacjent" EntityType="Self.Pacjent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terminy" EntityType="Self.Terminy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerminyUmowione" EntityType="Self.TerminyUmowione" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TerminyUm__ID_le__5070F446" Association="Self.FK__TerminyUm__ID_le__5070F446">
+            <End Role="Lekarz" EntitySet="Lekarz" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TerminyUm__ID_pa__5165187F" Association="Self.FK__TerminyUm__ID_pa__5165187F">
+            <End Role="Pacjent" EntitySet="Pacjent" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TerminyUm__ID_te__52593CB8" Association="Self.FK__TerminyUm__ID_te__52593CB8">
+            <End Role="Terminy" EntitySet="Terminy" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OstatecznaWersjaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lekarz">
+          <Key>
+            <PropertyRef Name="ID_lekarza" />
+          </Key>
+          <Property Name="ID_lekarza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie_lekarza" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko_lekarza" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="specjalizacja" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TerminyUmowione" Relationship="Self.FK__TerminyUm__ID_le__5070F446" FromRole="Lekarz" ToRole="TerminyUmowione" />
+        </EntityType>
+        <EntityType Name="Pacjent">
+          <Key>
+            <PropertyRef Name="ID_pacjenta" />
+          </Key>
+          <Property Name="ID_pacjenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie_pacjenta" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko_pacjenta" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="wiek_pacjenta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TerminyUmowione" Relationship="Self.FK__TerminyUm__ID_pa__5165187F" FromRole="Pacjent" ToRole="TerminyUmowione" />
+        </EntityType>
+        <EntityType Name="Terminy">
+          <Key>
+            <PropertyRef Name="ID_terminu" />
+          </Key>
+          <Property Name="ID_terminu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="termin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="czy_wolne" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TerminyUmowione" Relationship="Self.FK__TerminyUm__ID_te__52593CB8" FromRole="Terminy" ToRole="TerminyUmowione" />
+        </EntityType>
+        <EntityType Name="TerminyUmowione">
+          <Key>
+            <PropertyRef Name="ID_TerminyUmowione" />
+          </Key>
+          <Property Name="ID_TerminyUmowione" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_lekarza" Type="Int32" />
+          <Property Name="ID_pacjenta" Type="Int32" />
+          <Property Name="ID_termiu" Type="Int32" />
+          <NavigationProperty Name="Lekarz" Relationship="Self.FK__TerminyUm__ID_le__5070F446" FromRole="TerminyUmowione" ToRole="Lekarz" />
+          <NavigationProperty Name="Pacjent" Relationship="Self.FK__TerminyUm__ID_pa__5165187F" FromRole="TerminyUmowione" ToRole="Pacjent" />
+          <NavigationProperty Name="Terminy" Relationship="Self.FK__TerminyUm__ID_te__52593CB8" FromRole="TerminyUmowione" ToRole="Terminy" />
+        </EntityType>
+        <Association Name="FK__TerminyUm__ID_le__5070F446">
+          <End Role="Lekarz" Type="Self.Lekarz" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarz">
+              <PropertyRef Name="ID_lekarza" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_lekarza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TerminyUm__ID_pa__5165187F">
+          <End Role="Pacjent" Type="Self.Pacjent" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjent">
+              <PropertyRef Name="ID_pacjenta" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_pacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TerminyUm__ID_te__52593CB8">
+          <End Role="Terminy" Type="Self.Terminy" Multiplicity="0..1" />
+          <End Role="TerminyUmowione" Type="Self.TerminyUmowione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminy">
+              <PropertyRef Name="ID_terminu" />
+            </Principal>
+            <Dependent Role="TerminyUmowione">
+              <PropertyRef Name="ID_termiu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OstatecznaWersjaEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lekarz" EntityType="Self.Lekarz" />
+          <EntitySet Name="Pacjent" EntityType="Self.Pacjent" />
+          <EntitySet Name="Terminy" EntityType="Self.Terminy" />
+          <EntitySet Name="TerminyUmowione" EntityType="Self.TerminyUmowione" />
+          <AssociationSet Name="FK__TerminyUm__ID_le__5070F446" Association="Self.FK__TerminyUm__ID_le__5070F446">
+            <End Role="Lekarz" EntitySet="Lekarz" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TerminyUm__ID_pa__5165187F" Association="Self.FK__TerminyUm__ID_pa__5165187F">
+            <End Role="Pacjent" EntitySet="Pacjent" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TerminyUm__ID_te__52593CB8" Association="Self.FK__TerminyUm__ID_te__52593CB8">
+            <End Role="Terminy" EntitySet="Terminy" />
+            <End Role="TerminyUmowione" EntitySet="TerminyUmowione" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OstatecznaWersjaModelStoreContainer" CdmEntityContainer="OstatecznaWersjaEntities2">
+          <EntitySetMapping Name="Lekarz">
+            <EntityTypeMapping TypeName="OstatecznaWersjaModel.Lekarz">
+              <MappingFragment StoreEntitySet="Lekarz">
+                <ScalarProperty Name="ID_lekarza" ColumnName="ID_lekarza" />
+                <ScalarProperty Name="imie_lekarza" ColumnName="imie_lekarza" />
+                <ScalarProperty Name="nazwisko_lekarza" ColumnName="nazwisko_lekarza" />
+                <ScalarProperty Name="specjalizacja" ColumnName="specjalizacja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacjent">
+            <EntityTypeMapping TypeName="OstatecznaWersjaModel.Pacjent">
+              <MappingFragment StoreEntitySet="Pacjent">
+                <ScalarProperty Name="ID_pacjenta" ColumnName="ID_pacjenta" />
+                <ScalarProperty Name="imie_pacjenta" ColumnName="imie_pacjenta" />
+                <ScalarProperty Name="nazwisko_pacjenta" ColumnName="nazwisko_pacjenta" />
+                <ScalarProperty Name="wiek_pacjenta" ColumnName="wiek_pacjenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terminy">
+            <EntityTypeMapping TypeName="OstatecznaWersjaModel.Terminy">
+              <MappingFragment StoreEntitySet="Terminy">
+                <ScalarProperty Name="ID_terminu" ColumnName="ID_terminu" />
+                <ScalarProperty Name="termin" ColumnName="termin" />
+                <ScalarProperty Name="czy_wolne" ColumnName="czy_wolne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerminyUmowione">
+            <EntityTypeMapping TypeName="OstatecznaWersjaModel.TerminyUmowione">
+              <MappingFragment StoreEntitySet="TerminyUmowione">
+                <ScalarProperty Name="ID_TerminyUmowione" ColumnName="ID_TerminyUmowione" />
+                <ScalarProperty Name="ID_lekarza" ColumnName="ID_lekarza" />
+                <ScalarProperty Name="ID_pacjenta" ColumnName="ID_pacjenta" />
+                <ScalarProperty Name="ID_termiu" ColumnName="ID_termiu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

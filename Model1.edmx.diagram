@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afa78bac2a90401caf7816946eb3be50" Name="Diagram1">
+        <EntityTypeShape EntityType="OstatecznaWersjaModel.Lekarz" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OstatecznaWersjaModel.Pacjent" Width="1.5" PointX="7.125" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OstatecznaWersjaModel.Terminy" Width="1.5" PointX="0.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OstatecznaWersjaModel.TerminyUmowione" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="OstatecznaWersjaModel.FK__TerminyUm__ID_le__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="OstatecznaWersjaModel.FK__TerminyUm__ID_pa__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="OstatecznaWersjaModel.FK__TerminyUm__ID_te__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
