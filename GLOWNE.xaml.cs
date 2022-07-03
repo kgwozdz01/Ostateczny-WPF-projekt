@@ -26,7 +26,33 @@ namespace Ostateczny_WPF_projekt
             OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
             var docs = from d in db.Lekarz
                        select d;
-            
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.imie_lekarza);
+                Console.WriteLine(item.nazwisko_lekarza);
+                Console.WriteLine(item.specjalizacja);
+            }
+            this.GridLekarze.ItemsSource = docs.ToList();
+        }
+        private void DodajL_Click(object sender, RoutedEventArgs e)
+        {
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+
+            var lekarzObj = new Lekarz()
+            {
+                ID_lekarza = default,
+                imie_lekarza = LTXT1.Text,
+                nazwisko_lekarza = NazwiskoT.Text, 
+                specjalizacja = specjalizacjaT.Text,
+            };
+
+            db.Lekarz.Add(lekarzObj);
+            db.SaveChanges();
+
+            var docs = from d in db.Lekarz
+                       select d;
+
             foreach (var item in docs)
             {
                 Console.WriteLine(item.ID_lekarza);
@@ -36,9 +62,24 @@ namespace Ostateczny_WPF_projekt
             }
             this.GridLekarze.ItemsSource = docs.ToList();
         }
-        private void dodajL_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void OdswiezL_Click(object sender, RoutedEventArgs e)
+        {
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+
+            var docs = from d in db.Lekarz
+                       select d;
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.ID_lekarza);
+                Console.WriteLine(item.imie_lekarza);
+                Console.WriteLine(item.nazwisko_lekarza);
+                Console.WriteLine(item.specjalizacja);
+            }
+            this.GridLekarze.ItemsSource = docs.ToList();
         }
+
+
     }
 }
