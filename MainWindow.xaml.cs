@@ -23,7 +23,57 @@ namespace Ostateczny_WPF_projekt
         public MainWindow()
         {
             InitializeComponent();
-            
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+            var docs = from d in db.Pacjent
+                       select d;
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.imie_pacjenta);
+                Console.WriteLine(item.nazwisko_pacjenta);
+                Console.WriteLine(item.wiek_pacjenta);
+            }
+            this.GridPacjenci.ItemsSource = docs.ToList();
+        }
+        private void OdswiezDane_Click(object sender, RoutedEventArgs e)
+        {
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+
+            var docs = from d in db.Pacjent
+                       select d;
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.imie_pacjenta);
+                Console.WriteLine(item.nazwisko_pacjenta);
+                Console.WriteLine(item.wiek_pacjenta);
+            }
+            this.GridPacjenci.ItemsSource = docs.ToList();
+        }
+
+        private void DodajDane_Click(object sender, RoutedEventArgs e)
+        {
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+
+            var pacjentObj = new Pacjent()
+            {
+                ID_pacjenta = default,
+                imie_pacjenta = ImPacjenta.Text,
+                nazwisko_pacjenta = NazPacjenta.Text,
+            };
+
+            db.Pacjent.Add(pacjentObj);
+            db.SaveChanges();
+
+            var docs = from d in db.Pacjent
+                       select d;
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.imie_pacjenta);
+                Console.WriteLine(item.nazwisko_pacjenta);
+            }
+            this.GridPacjenci.ItemsSource = docs.ToList();
         }
     }
 }

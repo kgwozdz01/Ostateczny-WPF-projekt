@@ -15,39 +15,52 @@ using System.Windows.Shapes;
 namespace Ostateczny_WPF_projekt
 {
     /// <summary>
-    /// Logika interakcji dla klasy GLOWNE.xaml
+    /// Logika interakcji dla klasy TerminyStrona.xaml
     /// </summary>
-    public partial class GLOWNE : Window
+    public partial class TerminyStrona : Window
     {
-        public GLOWNE()
+        public TerminyStrona()
         {
             InitializeComponent();
 
             OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
-            var docs = from d in db.Lekarz
+            var docs = from d in db.Terminy
                        select d;
 
             foreach (var item in docs)
             {
-                Console.WriteLine(item.imie_lekarza);
-                Console.WriteLine(item.nazwisko_lekarza);
-                Console.WriteLine(item.specjalizacja);
+                Console.WriteLine(item.ID_terminu);
+                Console.WriteLine(item.termin);
+                Console.WriteLine(item.czy_wolne);
             }
-            this.GridLekarze.ItemsSource = docs.ToList();
+            this.GridTerminyStrona.ItemsSource = docs.ToList();
         }
-        private void DodajL_Click(object sender, RoutedEventArgs e)
+
+        private void Odswiezz_Click(object sender, RoutedEventArgs e)
+        {
+            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
+            var docs = from d in db.Terminy
+                       select d;
+
+            foreach (var item in docs)
+            {
+                Console.WriteLine(item.ID_terminu);
+                Console.WriteLine(item.termin);
+                Console.WriteLine(item.czy_wolne);
+            }
+            this.GridTerminyStrona.ItemsSource = docs.ToList();
+        }
+
+        private void DoDajj_Click(object sender, RoutedEventArgs e)
         {
             OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
 
-            var lekarzObj = new Lekarz()
+            var terminObj = new Terminy()
             {
-                ID_lekarza = default,
-                imie_lekarza = LTXT1.Text,
-                nazwisko_lekarza = NazwiskoT.Text, 
-                specjalizacja = specjalizacjaT.Text,
+                ID_terminu = default,
             };
 
-            db.Lekarz.Add(lekarzObj);
+            db.Terminy.Add(terminObj);
             db.SaveChanges();
 
             var docs = from d in db.Lekarz
@@ -60,25 +73,7 @@ namespace Ostateczny_WPF_projekt
                 Console.WriteLine(item.nazwisko_lekarza);
                 Console.WriteLine(item.specjalizacja);
             }
-            this.GridLekarze.ItemsSource = docs.ToList();
+            this.GridTerminyStrona.ItemsSource = docs.ToList();
         }
-
-        private void OdswiezL_Click(object sender, RoutedEventArgs e)
-        {
-            OstatecznaWersjaEntities2 db = new OstatecznaWersjaEntities2();
-
-            var docs = from d in db.Lekarz
-                       select d;
-
-            foreach (var item in docs)
-            {
-                Console.WriteLine(item.ID_lekarza);
-                Console.WriteLine(item.imie_lekarza);
-                Console.WriteLine(item.nazwisko_lekarza);
-                Console.WriteLine(item.specjalizacja);
-            }
-            this.GridLekarze.ItemsSource = docs.ToList();
-        }
-
     }
 }

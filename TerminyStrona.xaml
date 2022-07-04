@@ -1,0 +1,19 @@
+﻿<Window x:Class="Ostateczny_WPF_projekt.TerminyStrona"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ostateczny_WPF_projekt"
+        mc:Ignorable="d"
+        Title="TerminyStrona" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="GridTerminyStrona" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="Odswiezz" Content="Odswiez" HorizontalAlignment="Left" Margin="42,302,0,0" VerticalAlignment="Top" Height="28" Width="49" Click="Odswiezz_Click"/>
+        <Button x:Name="DoDajj" Content="Dodaj" HorizontalAlignment="Left" Margin="115,302,0,0" VerticalAlignment="Top" Height="28" Click="DoDajj_Click"/>
+        <Label x:Name="CzyWolne" Content="Czy wolny?" HorizontalAlignment="Left" Margin="17,157,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Terminm" Content="Termin" HorizontalAlignment="Left" Margin="28,131,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TerminT" HorizontalAlignment="Left" Margin="123,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CzyWolneT" HorizontalAlignment="Left" Margin="123,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

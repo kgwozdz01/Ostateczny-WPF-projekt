@@ -9,9 +9,11 @@
       Title="Page1">
 
     <Grid>
-        <Image x:Name="___D" HorizontalAlignment="Left" Height="189" Margin="598,10,0,0" VerticalAlignment="Top" Width="192" Source="/kitku.jpg"/>
         <Button x:Name="OdniesDoGlowne" Content="Lekarze" HorizontalAlignment="Left" Margin="36,55,0,0" VerticalAlignment="Top" Click="OdniesDoGlowne_Click" Height="51" Width="206"/>
         <Button x:Name="OdniesDoTerminy" Content="Terminy" HorizontalAlignment="Left" Height="49" Margin="36,134,0,0" VerticalAlignment="Top" Width="206" Click="OdniesDoTerminy_Click"/>
         <Button x:Name="OdniesDoMainWindow" Content="Pacjenci" HorizontalAlignment="Left" Margin="36,213,0,0" VerticalAlignment="Top" Click="OdniesMainWindow_Click" Height="51" Width="206"/>
+        <Button x:Name="OdniesDoTerminyUmowione" Content="Terminy Umowione" HorizontalAlignment="Left" Margin="36,293,0,0" VerticalAlignment="Top" Height="51" Width="206" Click="OdniesDoTerminyUmowione_Click" />
+        <Image HorizontalAlignment="Left" Height="100" Margin="421,134,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
+
 </Page>

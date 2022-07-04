@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="GridPacjenci" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,-10,-10"/>
+        <Label x:Name="ImiePacjenta" Content="Imie pacjenta" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="NazwiskoPacjenta" Content="Nazwisko pacjenta" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ImPacjenta" HorizontalAlignment="Left" Margin="135,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NazPacjenta" HorizontalAlignment="Left" Margin="135,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="DodajDane" Content="Dodaj" HorizontalAlignment="Left" Margin="219,217,0,0" VerticalAlignment="Top" Click="DodajDane_Click" RenderTransformOrigin="0.63,-0.986"/>
+        <Button x:Name="OdswiezDane" Content="odswiez" HorizontalAlignment="Left" Margin="135,217,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="1.752,1.267" Click="OdswiezDane_Click"/>
+
     </Grid>
 </Window>

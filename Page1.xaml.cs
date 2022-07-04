@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Ostateczny_WPF_projekt
 {
@@ -25,20 +27,27 @@ namespace Ostateczny_WPF_projekt
             InitializeComponent();
         }
 
-        private void OdniesDoGlowne_Click(object sender, RoutedEventArgs e)
+        private void OdniesDoGlowne_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new GLOWNE());
+            NavigationService.Navigate(new GLOWNE());
         }
 
         private void OdniesDoTerminy_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new GLOWNE());
- //do zmiany
+            this.NavigationService.Navigate(new TerminyStrona());
+            //terminy
         }
 
         private void OdniesMainWindow_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MainWindow());
+            //pacjenci
+        }
+
+        private void OdniesDoTerminyUmowione_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new TerminyUmowioneOkno());
+            //terminy umowione
         }
     }
 }
