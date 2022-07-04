@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Ostateczny_WPF_projekt
 {
@@ -48,7 +50,21 @@ namespace Ostateczny_WPF_projekt
             };
 
             db.Lekarz.Add(lekarzObj);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+
 
             var docs = from d in db.Lekarz
                        select d;
